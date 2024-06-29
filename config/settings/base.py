@@ -1,7 +1,7 @@
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 DEFAULT_APPS = [
@@ -17,6 +17,11 @@ DEFAULT_APPS = [
 CUSTOM_APPS = [
 
     # USER DEFINED APPS
+    "apps.healthInsurance",
+    "apps.familyMember",
+    "apps.yearlyCheckup",
+   
+    
 ]
 
 THIRD_PARTY_APPS = [
@@ -89,3 +94,4 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
