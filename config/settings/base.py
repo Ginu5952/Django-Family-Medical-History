@@ -20,8 +20,10 @@ CUSTOM_APPS = [
     "apps.healthInsurance",
     "apps.familyMember",
     "apps.yearlyCheckup",
-   
-    
+    "apps.childrenCheckUp",
+    "apps.hospitalDetails",
+    "apps.doctorDetails",
+    "apps.familyMedicalDetails",
 ]
 
 THIRD_PARTY_APPS = [

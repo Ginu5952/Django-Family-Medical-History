@@ -21,4 +21,3 @@ class HealthInsuranceCard(models.Model):
 
         self.clean()  # Run validation
         super().save(*args, **kwargs)  # Call the original save method
-

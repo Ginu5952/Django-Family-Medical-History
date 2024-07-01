@@ -4,3 +4,5 @@ from .models import HealthInsuranceCard
 
 admin.site.register(HealthInsuranceCard)
 
+
+
