@@ -16,4 +16,4 @@ class HospitalDetail(models.Model):
 
 
     def __str__(self) -> str:
-        return f"Hospital_id:{self.hospital_id} | Hospital_name:{self.hospital_name}"
+        return f"{self.hospital_name}"

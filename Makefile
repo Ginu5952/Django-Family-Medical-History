@@ -22,4 +22,7 @@ dev-dbshell:
 dev-shell:
 	python3 manage.py shell --settings=config.settings.dev
 
+dev-super:
+	python3 manage.py createsuperuser --settings=config.settings.dev	
+
 
