@@ -1,7 +1,9 @@
 from django.contrib import admin
-from .models import DoctorDetail, Department, DoctorDepartment
+from .models import DoctorDetail, Department
 
 
+
+admin.site.register(Department)
 
 
 @admin.register(DoctorDetail)

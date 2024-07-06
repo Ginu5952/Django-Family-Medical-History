@@ -37,7 +37,7 @@ class FamilyMedicalDetail(models.Model):
         db_column="department",
         
     )
-    date_of_visit = models.DateTimeField()
+    date_of_visit = models.DateField()
     symptoms = models.TextField(blank=True, null=True)
     diagnosis = models.TextField(blank=True, null=True)
     medication = models.TextField(blank=True, null=True)
@@ -57,27 +57,25 @@ class FamilyMedicalDetail(models.Model):
             ), 
         ]
 
-  #  def clean(self) :
-          
+    def clean(self):
+            super().clean()
 
-     #   doctor_hospital_pairs = DoctorDetail.objects.values_list('doctor_id', 'doctor_name').distinct()
+            # Ensure doctor is associated with the selected hospital
+            if self.doctor_id.hospital.hospital_name != self.hospital_id.hospital_name:
+              
+                raise ValidationError(f'{self.doctor_id.doctor_name} is not associated with {self.hospital_id}. Please select a valid combination.')
 
-      #  for doctor_idd,doctor_namee in doctor_hospital_pairs:
 
-           
+            # Ensure doctor is associated with the selected department
+            if  self.doctor_id.departments != self.department:
+                raise ValidationError(f'{self.doctor_id.doctor_name} is not associated with department {self.department}. Please select a valid combination.')
 
-        #    if doctor_idd == self.doctor_id.doctor_id:
-
-          #      if self.doctor_id.hospital_id.hospital_id != self.hospital_id.hospital_id:
-
-           #         raise ValidationError(f'{doctor_namee} is not associated with hospital id {self.hospital_id.hospital_id}. Please select a valid combination.')
-           #     elif self.doctor_id.department !=  self.department.department:
-          #          raise ValidationError(f'{doctor_namee} is not associated with {self.department.department}. Please select a valid combination.')
-
-      
-        
-                    
-
+    
+    
+    def save(self, *args, **kwargs):
+        self.clean()  # Run validation before saving
+        super().save(*args, **kwargs)        
+                        
 
    
     def __str__(self):
