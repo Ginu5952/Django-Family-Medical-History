@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from apps.healthInsurance.models import HealthInsuranceCard
 from django.db.models import Q, F
 from apps.doctorDetails.models import DoctorDetail,Department
@@ -45,8 +46,15 @@ class FamilyMedicalDetail(models.Model):
         
      
         constraints = [
-            models.CheckConstraint(check=models.Q(date_of_visit__lte=models.functions.Now()), name='date_of_visit_check'),
-            models.UniqueConstraint(fields=['health_insurance_card_no','doctor_id', 'hospital_id', 'department','date_of_visit'], name='unique_doctor_visit'),
+           
+            models.UniqueConstraint(
+                fields=['health_insurance_card_no','doctor_id', 'hospital_id', 'department','date_of_visit'], 
+                name='unique_doctor_visit'),
+
+            models.CheckConstraint(
+                check=models.Q(date_of_visit__lte=timezone.now().date()),
+                name='Date of visit cannot be future date'
+            ), 
         ]
 
   #  def clean(self) :

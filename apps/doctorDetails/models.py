@@ -27,7 +27,6 @@ class DoctorDetail(models.Model):
 
 class DoctorDepartment(models.Model):
     doctor = models.ForeignKey(DoctorDetail, on_delete=models.CASCADE)
-   # department = models.ForeignKey(Department, on_delete=models.CASCADE)
-
+  
     def __str__(self):
         return f"{self.doctor.doctor_name} - {self.department.department} - {self.doctor.hospital}"

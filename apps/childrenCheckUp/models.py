@@ -45,6 +45,10 @@ class ChildrenCheckUp(models.Model):
                 fields=['health_insurance_card_no', 'father_name', 'mother_name'],
                 name='unique_checkup_per_family'
             ),
+            models.CheckConstraint(
+                check=models.Q(date_of_vaccination__lte=timezone.now().date()),
+                name='vaccination date cannot be future date'
+            ),    
         ]
      
    
