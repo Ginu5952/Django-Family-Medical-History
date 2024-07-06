@@ -1,0 +1,37 @@
+/* custom_admin.css */
+body {
+    background-image: url('/static/images/img.jpg');
+    background-size: cover; /* Fit the entire image within the header */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   
+}
+
+/* Example: Change the color of the header */
+#header {
+  
+    background-color: #58da588c; /* Dark gray header */
+    color: white; /* White text */
+}
+
+.site-header h1 {
+    color: white;  /* Change text color to white */
+}
+
+#site-name a:link,
+#site-name a:visited {
+    color: white !important; /* Use !important to ensure it overrides other styles */
+}
+
+.module caption {
+    background: rgb(136, 189, 136);
+}
+
+#content-related{
+    background: rgb(185, 223, 185);
+    margin-right: -300;
+   
+    
+ 
+}
+

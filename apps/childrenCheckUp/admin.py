@@ -1,7 +1,17 @@
 from django.contrib import admin
 from .models import ChildrenDetail, VaccinationName, ChildrenCheckUp
 
-admin.site.register(ChildrenDetail)
+
+
+class ChildrenDetailAdmin(admin.ModelAdmin):
+
+  
+
+    list_display = ('first_name', 'last_name', 'age','gender')
+  
+ 
+
+admin.site.register(ChildrenDetail,ChildrenDetailAdmin)
 admin.site.register(VaccinationName)
 
 
