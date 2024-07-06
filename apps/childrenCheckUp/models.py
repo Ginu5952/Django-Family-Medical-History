@@ -51,7 +51,18 @@ class ChildrenCheckUp(models.Model):
             ),    
         ]
      
-   
+    def clean(self):
+        print(self.health_insurance_card_no)    
+        print(self.father_name.health_insurance_card_no)
+        
+        if self.health_insurance_card_no != self.father_name.health_insurance_card_no:
+            raise ValidationError(f'{self.father_name} is not associated with {self.health_insurance_card_no}. Please select a valid combination.')
+
+    def save(self, *args, **kwargs):
+        self.clean()  # Run validation before saving
+        super().save(*args, **kwargs)  
+        
+            
     def __str__(self):
        
         children_names = ", ".join(child.first_name for child in self.children_name.all())
