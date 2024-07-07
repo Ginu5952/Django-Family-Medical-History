@@ -1,4 +1,6 @@
+import re
 from django.db import models
+from django.core.exceptions import ValidationError
 
 class HospitalDetail(models.Model):
     
@@ -13,7 +15,18 @@ class HospitalDetail(models.Model):
     class Meta:
         unique_together = ('hospital_name','location','address')
 
+    def clean(self):
+        super().clean()
+        self.validate_contact_no()
 
+    def validate_contact_no(self):
+        pattern = r'^\d{9}$'
+        if not re.match(pattern, self.contact_number):
+            raise ValidationError("Contact number must be exactly 9 digits.")
+
+    def save(self, *args, **kwargs):
+        self.clean()  # Run validation before saving
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.hospital_name}"

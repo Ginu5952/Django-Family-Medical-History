@@ -1,7 +1,7 @@
+import datetime
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-import datetime
 from apps.healthInsurance.models import HealthInsuranceCard
 
 class YearlyCheckUp(models.Model):
@@ -46,9 +46,10 @@ class YearlyCheckUp(models.Model):
         if isinstance(self.date_of_check_up, str):
             self.date_of_check_up = datetime.datetime.strptime(self.date_of_check_up, '%Y-%m-%d').date()
         self.clean()  # Run validation
-        super().save(*args, **kwargs)  # Call the original save method
+        super().save(*args, **kwargs) 
 
     def __str__(self):
+        
         if self.yearly_check_up_done:
             return f"Yearly Check-Up for {self.health_insurance_card_no} on {self.date_of_check_up}"
         else:

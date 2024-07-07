@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
-from apps.healthInsurance.models import HealthInsuranceCard
-from django.db.models import Q, F
+from django.core.exceptions import ValidationError
 from apps.doctorDetails.models import DoctorDetail,Department
 from apps.hospitalDetails.models import HospitalDetail
-from django.core.exceptions import ValidationError
+from apps.healthInsurance.models import HealthInsuranceCard
+
 
 
 class FamilyMedicalDetail(models.Model):

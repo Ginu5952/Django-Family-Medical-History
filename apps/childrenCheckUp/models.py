@@ -6,8 +6,8 @@ from apps.healthInsurance.models import HealthInsuranceCard
 from apps.familyMember.models import FamilyMember
 
 
-
 class ChildrenDetail(models.Model):
+
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     age = models.IntegerField()
@@ -24,7 +24,6 @@ class VaccinationName(models.Model):
     def __str__(self) -> str:
         return f'{self.vaccination_name}'
      
-
 
 class ChildrenCheckUp(models.Model):
 
@@ -52,8 +51,7 @@ class ChildrenCheckUp(models.Model):
         ]
      
     def clean(self):
-        print(self.health_insurance_card_no)    
-        print(self.father_name.health_insurance_card_no)
+    
         
         if self.health_insurance_card_no != self.father_name.health_insurance_card_no:
             raise ValidationError(f'{self.father_name} is not associated with {self.health_insurance_card_no}. Please select a valid combination.')
