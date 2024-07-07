@@ -44,10 +44,38 @@ make dev-install
 ```
 
 The command starts the Django development server using the settings defined in the config/settings/dev.py file.
+After starting the server, Django typically outputs a message indicating the URL where you can access your application. 
 
 ```
 make start
 ```
+Once the server starts, you should see output similar to:
+
+```
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 08, 2024 - 12:34:56
+Django version X.Y.Z, using settings 'config.settings.dev'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+```
+
+#### Accessing your Application
+
+- Open your web browser and navigate to http://127.0.0.1:8000/ or http://localhost:8000/.
+
+- You should now see your Django application running locally. Any changes you make to your code will be reflected upon refreshing the page.
+
+#### Additional Notes
+
+- To stop the development server, press CONTROL-C in the terminal where it is running.
+
+
+### Django Development Commands
+
 The command is used to create a new superuser for your Django project with a specified settings module. 
 ```
 make dev-super
