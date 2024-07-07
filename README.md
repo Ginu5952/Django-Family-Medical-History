@@ -48,6 +48,10 @@ The command starts the Django development server using the settings defined in t
 ```
 make start
 ```
+The command is used to create a new superuser for your Django project with a specified settings module. 
+```
+make dev-super
+```
 
 When you create a new database for your Django project, running this command is an essential step to set up the database schema according to your models and their migrations.
 
@@ -59,4 +63,29 @@ This command will scan the models.py file for changes, create a new migration fi
 
 ```
 make dev-makem
+```
+
+The command  is used to display a list of all the migrations in your Django project and their current status, using a specific settings module.
+
+```
+make dev-showm
+```
+
+The command is used to open a database shell for your Django project's database, using a specific settings module.
+
+```
+make dev-dbshell
+```
+
+
+The command is used to open an interactive Python shell with your Django project's context, using a specific settings module. 
+
+```
+make dev-shell
+```
+
+The command is used to display the SQL statements for a specific migration in your Django project
+
+```
+make dev-sqlm
 ```
