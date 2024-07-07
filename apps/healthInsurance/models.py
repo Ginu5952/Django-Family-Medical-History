@@ -11,7 +11,7 @@ class HealthInsuranceCard(models.Model):
         return self.health_insurance_card_no
 
     def clean(self):
-        if self.expiry_date_of_card <= timezone.now().date():
+        if self.expiry_date_of_card is not None and self.expiry_date_of_card <= timezone.now().date():
             raise ValidationError('The expiry date must be in the future.')
 
     def save(self, *args, **kwargs):
