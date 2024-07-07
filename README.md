@@ -65,6 +65,12 @@ This command will scan the models.py file for changes, create a new migration fi
 make dev-makem
 ```
 
+Django uses migrations to track changes to your models over time. Running migrate applies these changes to your database schema, ensuring it stays synchronized with your model definitions.
+
+```
+make dev-m
+```
+
 The command  is used to display a list of all the migrations in your Django project and their current status, using a specific settings module.
 
 ```
