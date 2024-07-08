@@ -7,19 +7,23 @@ To provide secure, accessible, and accurate family medical information to enhanc
 # Mission Objectives
 
 ```
-Establish and maintain detailed family medical records, capturing all medical visits, diagnoses, and treatments.
+Track and report family members' health issues over recent years.
 
-Ensure every family member has an up-to-date health insurance record, including coverage details and expiry dates.
+Calculate and analyze annual medical expenses for the family.
 
-Implement regular and thorough yearly check-ups for all family members, to monitor and promote long-term health.
+Predict potential health issues for individuals based on family history.
 
-Develop a robust network of healthcare professionals, 
-
-specializing in various medical fields across affiliated hospitals.
+Provide initial symptom and medication recommendations based on stored data.
 
 Maintain accurate records of children's vaccinations and health check-ups.
 
-Ensure comprehensive and accurate documentation of family member details, facilitating personalized healthcare and seamless family support.
+Create an easy-to-use interface for entering and retrieving medical information.
+
+Ensure data security and privacy for all stored health and financial records.
+
+Integrate with external healthcare sources for updated medical insights.
+
+Send timely notifications for health predictions and upcoming medical needs.
 ```
 # Instructions to run pogram
 
