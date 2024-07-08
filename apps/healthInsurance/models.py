@@ -8,6 +8,9 @@ class HealthInsuranceCard(models.Model):
     health_insurance_card_no = models.CharField(max_length=50, primary_key=True)
     expiry_date_of_card = models.DateField()
 
+    class Meta:
+        ordering = ['health_insurance_card_no'] 
+
     def __str__(self):
         return self.health_insurance_card_no
 

@@ -1,18 +1,22 @@
 import datetime
+from django import forms
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from apps.healthInsurance.models import HealthInsuranceCard
+from apps.familyMember.models import FamilyMember
 
 class YearlyCheckUp(models.Model):
 
     yearly_check_up_id = models.AutoField(primary_key=True)
-    health_insurance_card_no = models.ForeignKey(HealthInsuranceCard, on_delete=models.CASCADE)
+    name = models.OneToOneField(FamilyMember,related_name='yearly_check_up', on_delete=models.CASCADE)
+    
     yearly_check_up_done = models.BooleanField(default=False)
     date_of_check_up = models.DateField(null=True,blank=True)
 
     
     class Meta:
+        
+
         constraints = [
             models.CheckConstraint(
                 name='check_yearly_check_up_done_valid',
@@ -26,12 +30,13 @@ class YearlyCheckUp(models.Model):
                 )
             ),
             models.UniqueConstraint(
-                fields=['health_insurance_card_no', 'date_of_check_up'],
+                fields=['yearly_check_up_id','name','date_of_check_up'],
                 name='unique_health_insurance_card_date_of_check_up'
             )
         ]
 
     def clean(self):
+
         if self.yearly_check_up_done:
             if not self.date_of_check_up:
                 raise ValidationError('Date of check-up must be set if yearly check-up is done.')
@@ -51,6 +56,6 @@ class YearlyCheckUp(models.Model):
     def __str__(self):
         
         if self.yearly_check_up_done:
-            return f"Yearly Check-Up for {self.health_insurance_card_no} on {self.date_of_check_up}"
+            return f"Yearly Check-Up for {self.name.first_name} {self.name.last_name} on {self.date_of_check_up}"
         else:
-            return f"{self.health_insurance_card_no} not done yearly checkup" 
+            return f"{self.name.first_name} {self.name.last_name} not done yearly checkup" 

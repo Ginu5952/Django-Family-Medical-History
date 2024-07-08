@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-from apps.doctorDetails.models import DoctorDetail,Department
-from apps.hospitalDetails.models import HospitalDetail
+from apps.doctorDetails.models import DoctorDetail
 from apps.healthInsurance.models import HealthInsuranceCard
+from apps.familyMember.models import FamilyMember
 
 
 
@@ -17,7 +17,8 @@ class FamilyMedicalDetail(models.Model):
         db_column='health_insurance_card_no',
     )
     
-    
+    first_name = models.OneToOneField(FamilyMember,on_delete=models.CASCADE)
+
     doctor_id = models.ForeignKey(
         DoctorDetail,
         on_delete=models.CASCADE,
@@ -25,18 +26,6 @@ class FamilyMedicalDetail(models.Model):
         related_name="doctor_visits"
     )
 
-    hospital_id = models.ForeignKey(
-        HospitalDetail,
-        on_delete=models.CASCADE,
-        db_column="hospital_id",
-        related_name="hospital_visits"
-    )
-    department = models.ForeignKey(
-        Department,
-        on_delete=models.CASCADE,
-        db_column="department",
-        
-    )
     date_of_visit = models.DateField()
     symptoms = models.TextField(blank=True, null=True)
     diagnosis = models.TextField(blank=True, null=True)
@@ -48,7 +37,7 @@ class FamilyMedicalDetail(models.Model):
         constraints = [
            
             models.UniqueConstraint(
-                fields=['health_insurance_card_no','doctor_id', 'hospital_id', 'department','date_of_visit'], 
+                fields=['health_insurance_card_no','first_name','doctor_id','date_of_visit'], 
                 name='unique_doctor_visit'),
 
             models.CheckConstraint(
@@ -60,15 +49,10 @@ class FamilyMedicalDetail(models.Model):
     def clean(self):
             super().clean()
 
-            # Ensure doctor is associated with the selected hospital
-            if self.doctor_id.hospital.hospital_name != self.hospital_id.hospital_name:
+            # Ensure first name is associated with the selected health_insurance_card_no
+            if self.first_name.health_insurance_card_no != self.health_insurance_card_no:
               
-                raise ValidationError(f'{self.doctor_id.doctor_name} is not associated with {self.hospital_id}. Please select a valid combination.')
-
-
-            # Ensure doctor is associated with the selected department
-            if  self.doctor_id.departments != self.department:
-                raise ValidationError(f'{self.doctor_id.doctor_name} is not associated with department {self.department}. Please select a valid combination.')
+                raise ValidationError(f'{self.first_name} is not associated with {self.health_insurance_card_no}. Please select a valid combination.')
 
     
     

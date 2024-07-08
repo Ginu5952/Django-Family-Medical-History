@@ -28,7 +28,7 @@ class VaccinationName(models.Model):
 class ChildrenCheckUp(models.Model):
 
     check_up_id = models.AutoField(primary_key=True)
-    health_insurance_card_no = models.ForeignKey(HealthInsuranceCard, on_delete=models.CASCADE)
+    health_insurance_card_no = models.OneToOneField(HealthInsuranceCard, on_delete=models.CASCADE)
     father_name = models.ForeignKey(FamilyMember,related_name='father_checkups', on_delete=models.CASCADE)
     mother_name = models.ForeignKey(FamilyMember, related_name='mother_checkups',on_delete=models.CASCADE)
     number_of_children = models.IntegerField( default=1)
