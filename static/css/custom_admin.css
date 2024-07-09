@@ -10,12 +10,17 @@ body {
 /* Example: Change the color of the header */
 #header {
   
-    background-color: #58da588c; /* Dark gray header */
+    background-color: #519b518c; /* Dark gray header */
     color: white; /* White text */
 }
 
 .site-header h1 {
     color: white;  /* Change text color to white */
+}
+
+a:link, a:visited {
+    color: #59bb5e;
+
 }
 
 #site-name a:link,
@@ -30,8 +35,6 @@ body {
 #content-related{
     background: rgb(185, 223, 185);
     margin-right: -300;
-   
-    
  
 }
 
