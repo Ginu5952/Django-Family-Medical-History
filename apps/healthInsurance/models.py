@@ -5,11 +5,14 @@ from django.utils import timezone
 
 
 class HealthInsuranceCard(models.Model):
+
     health_insurance_card_no = models.CharField(max_length=50, primary_key=True)
     expiry_date_of_card = models.DateField()
 
     class Meta:
-        ordering = ['health_insurance_card_no'] 
+        ordering = ['health_insurance_card_no']
+        verbose_name_plural = 'Health Insurance Card Details'
+        db_table = 'health_insurance'
 
     def __str__(self):
         return self.health_insurance_card_no

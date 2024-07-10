@@ -1,9 +1,6 @@
 from multiselectfield import MultiSelectField
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-from apps.hospitalDetails.models import HospitalDetail
-
 
 
 class Department(models.Model):
@@ -11,8 +8,10 @@ class Department(models.Model):
 
     def __str__(self) -> str:
         return self.department
+    
 
-
+    class Meta:
+        db_table = 'department'
 
 
 class DoctorDetail(models.Model):
@@ -29,7 +28,7 @@ class DoctorDetail(models.Model):
 
 
     doctor_id = models.AutoField(primary_key=True)
-    hospital = models.ForeignKey(HospitalDetail, on_delete=models.CASCADE)
+    hospital = models.ForeignKey('hospitalDetails.HospitalDetail', on_delete=models.CASCADE)
     departments = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='doctors')
     doctor_name = models.CharField(max_length=20)
     gender = models.CharField(max_length=1, null=True, blank=True, choices=[('M', 'Male'), ('F', 'Female')])
@@ -39,6 +38,8 @@ class DoctorDetail(models.Model):
 
     class Meta:
         ordering = ['doctor_id'] 
+        verbose_name_plural = 'Doctor Details'
+        db_table = 'doctor_details'
   
     def __str__(self):
         return self.doctor_name

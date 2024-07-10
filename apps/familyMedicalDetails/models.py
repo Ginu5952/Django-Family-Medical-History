@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-from apps.doctorDetails.models import DoctorDetail
 from apps.healthInsurance.models import HealthInsuranceCard
 from apps.familyMember.models import FamilyMember
 
@@ -20,7 +19,7 @@ class FamilyMedicalDetail(models.Model):
     first_name = models.OneToOneField(FamilyMember,on_delete=models.CASCADE)
 
     doctor_id = models.ForeignKey(
-        DoctorDetail,
+        'doctorDetails.DoctorDetail',
         on_delete=models.CASCADE,
         db_column="doctor_id",
         related_name="doctor_visits"
@@ -33,7 +32,8 @@ class FamilyMedicalDetail(models.Model):
 
     class Meta:
         
-     
+        verbose_name_plural = 'Family Medical History'
+        db_table = 'family_medical'
         constraints = [
            
             models.UniqueConstraint(

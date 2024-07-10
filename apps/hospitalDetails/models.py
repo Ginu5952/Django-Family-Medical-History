@@ -15,6 +15,8 @@ class HospitalDetail(models.Model):
 
     class Meta:
         unique_together = ('hospital_name','location','address')
+        verbose_name_plural = 'Hospital Details'
+        db_table = 'hospital_details'
 
     
     def __str__(self) -> str:

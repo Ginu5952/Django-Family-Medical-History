@@ -73,16 +73,18 @@ a.section:hover {
 
 
 
-/* Define the bubble styles */
+/* 
 .bubble {
     position: absolute;
-    background-color: rgb(248, 243, 243); /* Light blue color */
+    background-color: rgb(248, 243, 243); 
     border-radius: 50%;
     opacity: 0.8;
     pointer-events: none;
 }
+*/
 
 /* Ensure bubbles appear below other content */
+/*
 #bubble-container {
     position: fixed;
     top: 0;
@@ -92,4 +94,49 @@ a.section:hover {
     pointer-events: none;
     z-index: -1;
 }
+*/
 
+/*#bubble-container {
+
+.object-tools a:link, .object-tools a:visited {
+
+background: #61c066 !important;
+
+}
+*/
+
+h1{
+
+    color: rgb(46, 161, 46);
+    
+}
+
+
+div.breadcrumbs {
+
+background: #53bd538c;
+    
+}    
+
+.object-tools a:link, .object-tools a:visited {
+
+background: #53bd538c;
+}    
+
+thead th a:link, thead th a:visited {
+
+    color: #d610cc8c;
+    font-style: italic;
+}    
+
+thead th,
+tfoot td {
+    color:  #d610cc8c;
+    font-style: italic;
+}       
+
+body {
+    color: #59bb5e;
+    font-style: bold;
+    font-weight: 600;
+}    

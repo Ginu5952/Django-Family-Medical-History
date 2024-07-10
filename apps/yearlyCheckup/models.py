@@ -1,14 +1,13 @@
 import datetime
-from django import forms
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from apps.familyMember.models import FamilyMember
+
 
 class YearlyCheckUp(models.Model):
 
     yearly_check_up_id = models.AutoField(primary_key=True)
-    name = models.OneToOneField(FamilyMember,related_name='yearly_check_up', on_delete=models.CASCADE)
+    name = models.OneToOneField('familyMember.FamilyMember',related_name='yearly_check_up', on_delete=models.CASCADE)
     
     yearly_check_up_done = models.BooleanField(default=False)
     date_of_check_up = models.DateField(null=True,blank=True)
@@ -16,7 +15,8 @@ class YearlyCheckUp(models.Model):
     
     class Meta:
         
-
+        verbose_name_plural = 'Yearly Check Up Details'
+        db_table = 'yearly_checkup'
         constraints = [
             models.CheckConstraint(
                 name='check_yearly_check_up_done_valid',

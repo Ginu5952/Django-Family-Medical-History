@@ -2,8 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.db import models
 from django.core.exceptions import ValidationError
-from apps.healthInsurance.models import HealthInsuranceCard
-from apps.familyMember.models import FamilyMember
 
 
 class ChildrenDetail(models.Model):
@@ -12,6 +10,10 @@ class ChildrenDetail(models.Model):
     last_name = models.CharField(max_length=20)
     age = models.IntegerField()
     gender = models.CharField(max_length=1, choices=[('M', 'Male'), ('F', 'Female')])
+
+    class Meta:
+        db_table = 'children_names'
+        verbose_name_plural = 'Children Details'
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
@@ -24,21 +26,27 @@ class VaccinationName(models.Model):
     def __str__(self) -> str:
         return f'{self.vaccination_name}'
      
+    class Meta:
+        db_table = 'vaccination_names' 
+        verbose_name_plural = 'Vaccination Names'
 
 class ChildrenCheckUp(models.Model):
 
     check_up_id = models.AutoField(primary_key=True)
-    health_insurance_card_no = models.OneToOneField(HealthInsuranceCard, on_delete=models.CASCADE)
-    father_name = models.ForeignKey(FamilyMember,related_name='father_checkups', on_delete=models.CASCADE)
-    mother_name = models.ForeignKey(FamilyMember, related_name='mother_checkups',on_delete=models.CASCADE)
+    health_insurance_card_no = models.OneToOneField('healthInsurance.HealthInsuranceCard', on_delete=models.CASCADE)
+    father_name = models.ForeignKey('familyMember.FamilyMember',related_name='father_checkups', on_delete=models.CASCADE)
+    mother_name = models.ForeignKey('familyMember.FamilyMember', related_name='mother_checkups',on_delete=models.CASCADE)
     number_of_children = models.IntegerField( default=1)
-    children_name =  models.ManyToManyField(ChildrenDetail, related_name='check_ups')
+    children_name =  models.ManyToManyField('childrenCheckUp.ChildrenDetail', related_name='check_ups')
     vaccination_completed = models.BooleanField(default=False)
     date_of_vaccination = models.DateField(null=True,blank=True)
-    vaccination_name = models.ManyToManyField(VaccinationName, related_name='children_vaccinations',blank=True)
+    vaccination_name = models.ManyToManyField('childrenCheckUp.VaccinationName', related_name='children_vaccinations',blank=True)
 
 
     class Meta:
+        
+        db_table = 'children_checkup_details'
+        verbose_name_plural = 'Children Vaccination Details'
         constraints = [
             models.UniqueConstraint(
                 fields=['health_insurance_card_no', 'father_name', 'mother_name'],

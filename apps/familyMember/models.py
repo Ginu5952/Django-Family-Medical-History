@@ -16,7 +16,7 @@ class FamilyMember(models.Model):
     }
 
     member_id = models.AutoField(primary_key=True)
-    health_insurance_card_no = models.OneToOneField(HealthInsuranceCard, on_delete=models.CASCADE)
+    health_insurance_card_no = models.OneToOneField('healthInsurance.HealthInsuranceCard', related_name='healthInsurance', on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20, blank=True, null=True)
     age = models.IntegerField()
@@ -35,6 +35,8 @@ class FamilyMember(models.Model):
         ]
         unique_together = (('health_insurance_card_no', 'first_name', 'relation'),)
         ordering = ['health_insurance_card_no']
+        verbose_name_plural = 'Family Member Details'
+        db_table = 'family_member'
 
 
     def __str__(self):
