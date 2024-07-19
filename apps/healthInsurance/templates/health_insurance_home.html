@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ block.super }} - Health Insurance{% endblock title %}
+
+
+{% block content %}
+<h1>Health Insurance Cards</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Card Number</th>
+            <th>Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for card in cards %}
+        <tr>
+            <td>{{ card.health_insurance_card_no }}</td>
+            <td>{{ card.expiry_date_of_card }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

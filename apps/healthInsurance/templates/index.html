@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Your Project{% endblock %}
+
+{% block stylesheet %}
+    {{ block.super }}
+   
+    <style>
+        .link-container {
+            margin-top: 10px; 
+            margin-left: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Family Medical Informations</h1>
+    <p class="link-container">
+        Insert Medical Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>
+    </p>
+    <p class="link-container">
+        View Health Insurance Card Details&nbsp;&nbsp;&nbsp;&nbsp; 
+        <a href="http://127.0.0.1:8000/health-insurance/">http://127.0.0.1:8000/health-insurance/</a>
+    </p>
+    <p class="link-container">
+        View Family Members Details&nbsp;&nbsp;&nbsp;&nbsp; 
+        <a href="http://127.0.0.1:8000/family-members/">http://127.0.0.1:8000/family-members/</a>
+    </p>
+    <p class="link-container">
+        Add Family Members Details&nbsp;&nbsp;&nbsp;&nbsp; 
+        <a href="http://127.0.0.1:8000/family-members/add/">http://127.0.0.1:8000/family-members/add/</a>
+    </p>
+{% endblock %}
+

@@ -1,0 +1,7 @@
+body {
+    background-image: url('/static/images/img.jpg');
+    background-size: cover; /* Fit the entire image within the header */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   
+}

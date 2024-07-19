@@ -16,9 +16,16 @@ class FamilyMedicalDetail(models.Model):
         db_column='health_insurance_card_no',
     )
     
-    first_name = models.OneToOneField(FamilyMember,on_delete=models.CASCADE)
+    name = models.ForeignKey(
+        'familyMember.FamilyMember',
+        on_delete=models.CASCADE,
+        db_column= "family_member_id",
+        related_name="medical_details"
+        )
 
-    doctor_id = models.ForeignKey(
+    
+    
+    doctor = models.ForeignKey(
         'doctorDetails.DoctorDetail',
         on_delete=models.CASCADE,
         db_column="doctor_id",
@@ -28,7 +35,10 @@ class FamilyMedicalDetail(models.Model):
     date_of_visit = models.DateField()
     symptoms = models.TextField(blank=True, null=True)
     diagnosis = models.TextField(blank=True, null=True)
-    medication = models.TextField(blank=True, null=True)
+    
+    @property
+    def full_name(self):
+        return f"{self.name.first_name} {self.name.last_name}"
 
     class Meta:
         
@@ -37,7 +47,7 @@ class FamilyMedicalDetail(models.Model):
         constraints = [
            
             models.UniqueConstraint(
-                fields=['health_insurance_card_no','first_name','doctor_id','date_of_visit'], 
+                fields=['health_insurance_card_no','name','doctor_id','date_of_visit'], 
                 name='unique_doctor_visit'),
 
             models.CheckConstraint(
@@ -50,9 +60,9 @@ class FamilyMedicalDetail(models.Model):
             super().clean()
 
             # Ensure first name is associated with the selected health_insurance_card_no
-            if self.first_name.health_insurance_card_no != self.health_insurance_card_no:
+            if self.name.health_insurance_card_no != self.health_insurance_card_no:
               
-                raise ValidationError(f'{self.first_name} is not associated with {self.health_insurance_card_no}. Please select a valid combination.')
+                raise ValidationError(f'{self.full_name} is not associated with {self.health_insurance_card_no}. Please select a valid combination.')
 
     
     
@@ -63,4 +73,4 @@ class FamilyMedicalDetail(models.Model):
 
    
     def __str__(self):
-        return f'{self.health_insurance_card_no}   {self.diagnosis}   {self.doctor_id}   {self.date_of_visit}'    
+        return f'{self.health_insurance_card_no} {self.full_name}  {self.diagnosis}   {self.doctor_id}   {self.date_of_visit}'    

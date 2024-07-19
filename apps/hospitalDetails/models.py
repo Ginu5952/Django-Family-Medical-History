@@ -11,7 +11,7 @@ class HospitalDetail(models.Model):
     address = models.CharField(max_length=50)
     contact_number = models.CharField(max_length=15, unique=True,null=True,blank=True, validators=[RegexValidator(regex=r'^\d{9}$', message="Contact number must be exactly 9 digits.")])
     website = models.CharField(max_length=25,unique=True,null=True,blank=True)
-    registration_fees = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+   
 
     class Meta:
         unique_together = ('hospital_name','location','address')

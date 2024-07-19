@@ -1,7 +1,7 @@
 
 from django.core.validators import RegexValidator
 from django.db import models
-from apps.healthInsurance.models import HealthInsuranceCard
+
 
 class FamilyMember(models.Model):
     

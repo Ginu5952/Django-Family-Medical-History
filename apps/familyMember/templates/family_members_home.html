@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Family Members Details</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Health Insurance Card No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Relation</th>
+            <th>Gender</th>
+            <th>Marital Status</th>
+            <th>Profession</th>
+            <th>Contact Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.health_insurance_card_no.health_insurance_card_no }}</td>
+            <td>{{ member.first_name }}</td>
+            <td>{{ member.last_name }}</td>
+            <td>{{ member.age }}</td>
+            <td>{{ member.relation }}</td>
+            <td>{{ member.gender }}</td>
+            <td>{{ member.marital_status }}</td>
+            <td>{{ member.profession }}</td>
+            <td>{{ member.contact_no }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

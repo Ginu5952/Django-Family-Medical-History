@@ -11,6 +11,7 @@ DEFAULT_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+  
 
 ]
 
@@ -24,10 +25,14 @@ CUSTOM_APPS = [
     "apps.hospitalDetails",
     "apps.doctorDetails",
     "apps.familyMedicalDetails",
+    "apps.medicalExpenseDetails",
+   
+
 ]
 
 THIRD_PARTY_APPS = [
-    # EXTERNAL APPS
+    # third
+    
 ]
 
 INSTALLED_APPS = [*DEFAULT_APPS, *CUSTOM_APPS, *THIRD_PARTY_APPS]

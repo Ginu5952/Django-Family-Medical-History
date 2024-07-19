@@ -16,7 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from apps.healthInsurance import views
+
+
 
 admin.site.site_header = "FAMILY MEDICAL HISTORY"
 admin.site.index_title = "Medical Informations"
@@ -24,4 +27,8 @@ admin.site.site_title = "WELCOME TO HOME"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', views.index, name='index'),
+    path("health-insurance/",include("apps.healthInsurance.urls",namespace='health-insurance')),
+    path("family-members/",include("apps.familyMember.urls",namespace='family-members'))
+   
 ]

@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Family Member</h1>
+
+<!-- Display success or error messages -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<!-- Form for adding a new family member -->
+<form method="post" action="{% url 'family-members:post_family_member' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Family Member</button>
+</form>
+
+<!-- Link to index page of healthInsurance app -->
+<a href="{% url 'health-insurance:index' %}">Back to Home</a>
+{% endblock content %}

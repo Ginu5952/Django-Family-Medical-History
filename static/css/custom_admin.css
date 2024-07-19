@@ -73,7 +73,7 @@ a.section:hover {
 
 
 
-/* 
+
 .bubble {
     position: absolute;
     background-color: rgb(248, 243, 243); 
@@ -81,10 +81,10 @@ a.section:hover {
     opacity: 0.8;
     pointer-events: none;
 }
-*/
+
 
 /* Ensure bubbles appear below other content */
-/*
+
 #bubble-container {
     position: fixed;
     top: 0;
@@ -94,16 +94,14 @@ a.section:hover {
     pointer-events: none;
     z-index: -1;
 }
-*/
 
-/*#bubble-container {
 
-.object-tools a:link, .object-tools a:visited {
-
-background: #61c066 !important;
-
+#bubble-container .object-tools a:link,
+#bubble-container .object-tools a:visited {
+    background: #61c066 !important;
 }
-*/
+
+
 
 h1{
 
